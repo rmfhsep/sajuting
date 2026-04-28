@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id               Int               @id @default(autoincrement())
+  email            String            @unique
+  passwordHash     String
+  name             String
+  createdAt        DateTime          @default(now())
+  sajuReadings     SajuReading[]
+  gwansangReadings GwansangReading[]
+}
+
+model SajuReading {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  birthDate String
+  birthTime String
+  gender    String
+  result    Json
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model GwansangReading {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  imageUrl  String
+  result    Json
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
