@@ -62,11 +62,11 @@ export default function GwansangResultScreen() {
 
         <GoldButton
           label="다시 분석하기"
-          onPress={() => navigation.navigate('GwansangInput')}
+          onPress={() => navigation.navigate('Main', { screen: 'GwansangInput' })}
           variant="outline"
           style={styles.btn}
         />
-        <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.homeBtn}>
+        <TouchableOpacity onPress={() => navigation.navigate('Main', { screen: 'Home' })} style={styles.homeBtn}>
           <Text style={styles.homeBtnText}>홈으로</Text>
         </TouchableOpacity>
       </ScrollView>
